@@ -1,5 +1,6 @@
-module Coconut
-  class FetchService
+module Commands
+
+  class Fetch
 
     def initialize(customer:)
       @customer = customer
@@ -44,13 +45,7 @@ module Coconut
     end
 
     def server_file(file)
-      "#{customers_path}/#{file}.#{customer}"
-    end
-
-    def customers_path
-      path = "#{Rails.root}/#{config.local['customer_path']}"
-      FileUtils.mkdir_p(path) unless File.exist?(path)
-      path
+      "#{Configuration.customers_folder}/#{file}.#{customer}"
     end
 
     def convert_file(file)
@@ -67,5 +62,7 @@ module Coconut
     def read_yml(path)
       YAML.load_file(path)[environment]
     end
+
   end
+
 end

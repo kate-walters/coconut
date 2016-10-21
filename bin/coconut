@@ -1,6 +1,27 @@
 #!/usr/bin/env ruby
-
 require_relative "../lib/coconut"
 
-puts "This is your coconut CLI."
-puts __FILE__
+class Coconut < Thor
+
+  desc "install", "install the coconut on the local enviroment"
+  def install
+    Commands::Install.new.start
+  end
+
+  desc "init", "init a SQ project with a coconut instance"
+  def init
+    Generators::InitFile.start
+  end
+
+  desc "fetch", "fetch the config files from a server"
+  def fetch(customer)
+    Commands::Fetch.new(customer: customer).start
+  end
+
+  desc "swap", "swap the config files from a server"
+  def swap(customer)
+    Commands::Swap.new(customer: customer).start
+  end
+end
+
+Coconut.start(ARGV)

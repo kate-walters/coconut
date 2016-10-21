@@ -1,5 +1,6 @@
-module Coconut
-  class SwapService
+module Commands
+
+  class Swap
 
     def initialize(customer:)
       @customer = customer
@@ -33,16 +34,13 @@ module Coconut
     end
 
     def server_file(file)
-      "#{customers_path}/#{file}.#{customer}"
-    end
-
-    def customers_path
-      "#{Rails.root}/#{config.local['customer_path']}"
+      "#{Configuration.customers_folder}/#{file}.#{customer}"
     end
 
     def config_file(file)
-      "#{Rails.root}/config/#{file}"
+      "./config/#{file}"
     end
 
   end
+
 end
