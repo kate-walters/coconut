@@ -5,7 +5,7 @@ require 'coconut/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "coconut"
-  spec.version       = "0.1.0"
+  spec.version       = Coconut::VERSION
   spec.authors       = ["Andres Hernandez", "Roy Cruz"]
   spec.email         = ["ahernandez@growthaccelerationpartners.com", "rcruz@growthaccelerationpartners.com"]
 

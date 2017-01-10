@@ -1,4 +1,5 @@
 class Configuration
+  include Singleton
 
   YML_PATH = ".coconut"
 
@@ -16,16 +17,12 @@ class Configuration
     config['local']
   end
 
-  def self.user_home_path
+  def home_folder
     return ENV['HOME']
   end
 
-  def self.config_folder_path
-    "#{user_home_path}/.coconut"
-  end
-
-  def self.customers_folder
-    "#{config_folder_path}/customers/"
+  def config_folder
+    Coconut::ConfigFolder.new
   end
 
 end

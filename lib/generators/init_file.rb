@@ -5,7 +5,7 @@ module Generators
   class InitFile < Thor::Group
     include Thor::Actions
 
-    desc 'Generate configuration to init a coconut instance on a SQ proyect'
+    desc 'Generate configuration to init a coconut instance on folder'
 
     def self.source_root
       File.dirname(__FILE__) + '/coconut/templates'

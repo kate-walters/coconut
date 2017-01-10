@@ -1,1 +1,3 @@
-VERSION = "0.1.0"
+module Coconut
+  VERSION = "0.1.2"
+end
