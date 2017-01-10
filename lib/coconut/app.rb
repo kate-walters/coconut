@@ -13,7 +13,7 @@ module Coconut
       puts "Swapping the configuration for #{customer}"
       raise 'No coconut instance detected' if new?
       switchable_files.each do |file, value| switch_file(file: file, customer: customer) end
-      clear_caches
+      CacheService.new.clear
     end
 
     def init

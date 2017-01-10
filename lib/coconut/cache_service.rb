@@ -1,25 +1,29 @@
-class CacheService
+module Coconut
 
-  TMP_PATH = "./tmp"
+  class CacheService
 
-  attr_accessor :command
+    TMP_PATH = './tmp'
 
-  def initialize(command)
-    @command = command
-  end
+    attr_accessor :command
 
-  def clear
-    puts 'Clearing caches ...'
-    cache_entries.each { |entry| command.clear_directory(entry) }
-  end
+    def initialize(command = CommandInteface.new)
+      @command = command
+    end
 
-  private
+    def clear
+      puts 'Clearing caches ...'
+      cache_entries.each { |entry| command.clear_directory(entry) }
+    end
 
-  def cache_entries
-    Dir.entries(TMP_PATH)
-      .select { |name| name.start_with?('cache') }
-      .map { |name| File.join(TMP_PATH, name) }
-      .select { |file| File.directory?(file) }
+    private
+
+    def cache_entries
+      Dir.entries(TMP_PATH)
+        .select { |name| name.start_with?('cache') }
+        .map { |name| File.join(TMP_PATH, name) }
+        .select { |file| File.directory?(file) }
+    end
+
   end
 
 end

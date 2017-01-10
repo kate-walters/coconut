@@ -1,48 +1,52 @@
-class Configuration
-  include Singleton
+module Coconut
 
-  YML_PATH = ".coconut"
+  class Configuration
+    include Singleton
 
-  attr_accessor :config
+    YML_PATH = ".coconut"
 
-  def initialize
-    @config = YAML.load_file(YML_PATH)
-  end
+    attr_accessor :config
 
-  def server
-    config['server']
-  end
+    def initialize
+      @config = YAML.load_file(YML_PATH)
+    end
 
-  def local
-    config['local']
-  end
+    def server
+      config['server']
+    end
 
-  def customer_address(customer:)
-    server['customers'][customer]['address']
-  end
+    def local
+      config['local']
+    end
 
-  def home_folder
-    return ENV['HOME']
-  end
+    def customer_address(customer:)
+      server['customers'][customer]['address']
+    end
 
-  def config_folder
-    Coconut::ConfigFolder.new
-  end
+    def home_folder
+      return ENV['HOME']
+    end
 
-  def share_folder
-    server['shared_folder']
-  end
+    def config_folder
+      Coconut::ConfigFolder.new
+    end
 
-  def ssh_user
-    server['ssh_user']
-  end
+    def share_folder
+      server['shared_folder']
+    end
 
-  def config_files
-    local['config_files']
-  end
+    def ssh_user
+      server['ssh_user']
+    end
 
-  def switchable_files
-    config_files.select { |key, value| value['swap'] }
+    def config_files
+      local['config_files']
+    end
+
+    def switchable_files
+      config_files.select { |key, value| value['swap'] }
+    end
+
   end
 
 end
