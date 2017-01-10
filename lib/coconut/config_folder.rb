@@ -18,6 +18,11 @@ module Coconut
       create_customers_folder
     end
 
+    def customer_config_file(file:, customer:)
+      customer_file = "#{customer_path}#{file}.#{customer}"
+      customer_file_present?(customer_file) ? customer_file : ""
+    end
+
     private
 
     def configure
@@ -34,6 +39,10 @@ module Coconut
 
     def create_folder(path)
       FileUtils.mkdir_p(path) unless File.exist?(path)
+    end
+
+    def customer_file_present?(file)
+      File.exist?(file)
     end
 
   end

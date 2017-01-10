@@ -10,8 +10,8 @@ class CommandInterface
     execute("rm -rf #{path}")
   end
 
-  def fetch(user, address, origin, destination)
-    execute("scp #{user}@#{address}:#{origin} #{destination}")
+  def fetch(address, origin, destination)
+    execute("scp #{ssh_user}@#{address}:#{origin} #{destination}")
   end
 
   private
@@ -20,6 +20,10 @@ class CommandInterface
     Open3.popen3(command) do |std_in, std_out, std_err, wait_thread|
       raise std_err.readlines.join("\n") unless wait_thread.value.success?
     end
+  end
+
+  def ssh_user
+    Configuration.instance.ssh_user
   end
 
 end
